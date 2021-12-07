@@ -1,0 +1,73 @@
+html, body, canvas {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	overflow-x: hidden; /* Hide horizontal scrollbar */
+	overflow-y: hidden; /* Hide vertical scrollbar */
+}
+
+.screen {
+	display: flex;
+	flex-direction: row;
+}
+
+.drawing_canvas {
+	width: 85%;
+	height: 100vh;
+}
+
+.menu {
+	border: 1px solid black;
+	width: 15%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background-color: black;
+}
+
+.text {
+	color: white;
+	font-size: 20px;
+}
+
+.brush_grid {
+	display: grid;
+	border: 1px solid white;
+}
+
+.brush_option {
+	width: 50px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.brush_circle {
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	background-color: gray;
+}
+
+.colour_grid, .shape_grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	border: 1px solid white;
+}
+
+.colour_option, .shape_option {
+	width: 80px;
+	height: 40px;
+}
+
+.shape_option {
+	color: white;
+	text-align: center;
+}

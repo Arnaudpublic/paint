@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Paint with JS!</title>
+	<script src="script.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body onload="start()">
+	<div class="screen">
+		<canvas class="drawing_canvas" style="" width="1632" height="920"></canvas>
+		<div class="menu">
+			<div class="eraser">
+				<input type="checkbox" id="eraser" name="eraser" onchange="eraser(this.checked)" unchecked>
+  				<label for="eraser" class="text">Eraser</label>
+			</div>
+			<div class="brush_size">
+				<div class="text">Brush size:</div>
+				<div class="brush_grid">
+				</div>
+			</div>
+			<div class="colour_picker">
+				<div class="text">Pen colour:</div>
+				<div class="colour_grid">
+					<div class="colour_option" style="background-color: green;"></div>
+					<div class="colour_option" style="background-color: yellow;"></div>
+					<div class="colour_option" style="background-color: red;"></div>
+					<div class="colour_option" style="background-color: purple;"></div>
+					<div class="colour_option" style="background-color: blue;"></div>
+					<div class="colour_option" style="background-color: black;"></div>
+				</div>
+			</div>
+			<div class="shapes">
+				<div class="text">Pre-made shapes:</div>
+				<div class="shape_grid">
+					<div class="shape_option" name="line">Line</div>
+					<div class="shape_option" name="rectangle">Rectangle (border)</div>
+					<div class="shape_option" name="rectangle_fill">Rectangle (filled)</div>
+					<div class="shape_option" name="text">Text</div>
+					<div class="shape_option" name="circle">Circle (border)</div>
+					<div class="shape_option" name="circle_fill">Circle (filled)</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
