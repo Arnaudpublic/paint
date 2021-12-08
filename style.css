@@ -31,7 +31,7 @@ body {
 	background-color: black;
 }
 
-.text {
+.text, .save_option {
 	color: white;
 	font-size: 20px;
 }
@@ -70,4 +70,25 @@ body {
 .shape_option {
 	color: white;
 	text-align: center;
+}
+
+.save_drawing {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.save_grid {
+	display: grid;
+	max-width: 95%;
+	grid-template-columns: 1fr 1fr;
+	border: 1px solid white;
+}
+
+.save_option {
+	padding: 20px;
+}
+
+input.save_option {
+	font-size: 15px;
 }

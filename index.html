@@ -7,12 +7,23 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body onload="start()">
+	<img src="" id="import_placeholder" style="display: none;">
 	<div class="screen">
 		<canvas class="drawing_canvas" style="" width="1632" height="920"></canvas>
 		<div class="menu">
 			<div class="eraser">
 				<input type="checkbox" id="eraser" name="eraser" onchange="eraser(this.checked)" unchecked>
   				<label for="eraser" class="text">Eraser</label>
+			</div>
+			<div class="save_drawing">
+				<div class="save_grid">
+					<div class="save_option" name="save">Save</div>
+					<div class="save_option" name="restore">Restore</div>
+					<a href="" download="canvas_save" id="export">
+						<div class="save_option" name="export">Export</div>
+					</a>
+					<input type="file" id="import" class="save_option" name="import" accept="image/png, image/jpeg" onchange="import_save()">
+				</div>
 			</div>
 			<div class="brush_size">
 				<div class="text">Brush size:</div>

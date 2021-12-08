@@ -35,6 +35,10 @@ function start() { // Upon loading
 	for (var i = shape_options.length - 1; i >= 0; i--) {
 		shape_options[i].addEventListener("click", change_shape)
 	}
+	save_options = document.getElementsByClassName('save_option')
+	for (var i = save_options.length - 1; i >= 0; i--) {
+		save_options[i].addEventListener("click", change_save)
+	}
 	// JS variables
 	canvas_html = document.getElementsByClassName('drawing_canvas')[0]
 	canvas_html.addEventListener("click", click);
@@ -67,6 +71,33 @@ function change_shape(e) {
 		currently_drawing = false
 	} else {
 		current_shape = "pen"
+	}
+}
+
+function change_save(e) {
+	option = e.target.getAttribute("name")
+	console.log(option)
+	if (option=="save") {
+		draw.save()
+		save_image = draw.getImageData(0,0,canvas_width,canvas_height)
+	} else if (option=="restore") {
+		draw.restore()
+		draw.putImageData(save_image,0,0)
+	} else if (option=="export") {
+		save_file = canvas_html.toDataURL("image/png")
+		save_file.replace("image/png", "image/octet-stream")
+		document.getElementById('export').href = save_file
+	}
+}
+
+function import_save() {
+	save_file = document.getElementById('import')
+	img = document.getElementById('import_placeholder')
+	import_url = URL.createObjectURL(save_file.files[0])
+	img.src = import_url
+	img.onload = function() {
+		draw.drawImage(img,0,0,canvas_width,canvas_height)
+		console.log(img)
 	}
 }
 
