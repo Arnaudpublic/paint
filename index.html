@@ -9,11 +9,11 @@
 <body onload="start()">
 	<img src="" id="import_placeholder" style="display: none;">
 	<div class="screen">
-		<canvas class="drawing_canvas" style="" width="1632" height="920"></canvas>
+		<canvas class="drawing_canvas" width="1632" height="920"></canvas>
 		<div class="menu">
-			<div class="eraser">
+			<div class="eraser text">
 				<input type="checkbox" id="eraser" name="eraser" onchange="eraser(this.checked)" unchecked>
-  				<label for="eraser" class="text">Eraser</label>
+  				<label for="eraser">Eraser</label>
 			</div>
 			<div class="save_drawing">
 				<div class="save_grid">
@@ -22,7 +22,10 @@
 					<a href="" download="canvas_save" id="export">
 						<div class="save_option" name="export">Export</div>
 					</a>
-					<input type="file" id="import" class="save_option" name="import" accept="image/png, image/jpeg" onchange="import_save()">
+					<div class="save_option import_container">
+						<input type="file" id="import" name="import" accept="image/png, image/jpeg" onchange="import_save()">
+						<div class="import_text">Import</div>
+					</div>
 				</div>
 			</div>
 			<div class="brush_size">

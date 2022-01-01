@@ -10,6 +10,10 @@ body {
 	overflow-y: hidden; /* Hide vertical scrollbar */
 }
 
+label, .eraser, #eraser, .brush_grid, .colour_grid, .shape_grid {
+	cursor: pointer;
+}
+
 .screen {
 	display: flex;
 	flex-direction: row;
@@ -83,12 +87,52 @@ body {
 	max-width: 95%;
 	grid-template-columns: 1fr 1fr;
 	border: 1px solid white;
+	cursor: pointer;
 }
 
-.save_option {
+.save_option, #import {
 	padding: 20px;
 }
 
 input.save_option {
 	font-size: 15px;
+}
+
+.selected {
+	border: 5px green;
+	color: rgb(100,255,100);
+}
+
+#import {
+	display: none;
+	padding: 0;
+	max-width: 60px;
+}
+
+.import_container:hover .import_text {
+	display: none;
+}
+.import_container:hover #import {
+	display: block;
+}
+
+.colour_option, .shape_option, .save_option, .brush_option, .brush_circle, .text {
+	transition: color 0.2s ease-in-out;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.colour_option:hover, .shape_option:hover, .save_option:hover, .brush_option:hover, .text:hover {
+	color: #66ccff;
+}
+
+.pen_icon {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: none;
+}
+.selected .pen_icon {
+	display: block;
+	color: white;
 }

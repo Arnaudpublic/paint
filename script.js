@@ -4,9 +4,11 @@ let currently_drawing = false // click to enable
 let current_shape = "pen"
 let colour = "black"; // pen default colour
 let colour_options = [];
+let option;
 let width = 15 // pen default width
 let brush_options = [5,15,25,35,45]; // in pixels
 let oldX, oldY;
+let pen_text = "🖍"
 
 function start() { // Upon loading
 	// Html elements
@@ -26,10 +28,12 @@ function start() { // Upon loading
 		brush_circle.style.width = brush_options[i] + "px"
 		brush_circle.style.height = brush_options[i] + "px"
 		brush_grid.style.gridTemplateColumns += " 1fr"
+		brush_circle.appendChild(create_pen())
 	}
 	colour_options = document.getElementsByClassName('colour_option')
 	for (var i = colour_options.length - 1; i >= 0; i--) {
 		colour_options[i].addEventListener("click", change_colour)
+		colour_options[i].appendChild(create_pen())
 	}
 	shape_options = document.getElementsByClassName('shape_option')
 	for (var i = shape_options.length - 1; i >= 0; i--) {
@@ -55,23 +59,36 @@ function start() { // Upon loading
 
 function change_brush(e) {
 	width = brush_options[e.target.name]
+	unselect('brush_grid')
+	e.target.classList.add('selected')
 }
 
 function change_colour(e) {
-	draw.beginPath();
+	unselect("colour_grid")
+	draw.beginPath(); // avoid recolouring past draws
+	e.target.classList.add('selected')
 	colour = e.target.style.backgroundColor
 	draw.strokeStyle = colour
 }
 
 function change_shape(e) {
+	unselect("shape_grid")
 	option = e.target.getAttribute("name")
-	console.log(option)
+	currently_drawing = false
 	if (current_shape != option) {
+		e.target.classList.add('selected')
 		current_shape = option
 		currently_drawing = false
 	} else {
 		current_shape = "pen"
 	}
+	/*if (current_shape=="text") {
+		canvas_html.style.cursor = "text"
+	} else {
+		canvas_html.style.cursor = "default"
+	}*/
+	// note: For some reason, the text pointer goes "behind" the canvas. I have no clue how to fix that bug.
+	// I've chosen to disable the feature since it makes it hell to draw.
 }
 
 function change_save(e) {
@@ -97,7 +114,7 @@ function import_save() {
 	img.src = import_url
 	img.onload = function() {
 		draw.drawImage(img,0,0,canvas_width,canvas_height)
-		console.log(img)
+		//console.log(img)
 	}
 }
 
@@ -116,7 +133,6 @@ function click(e) {
 			draw.stroke(); 
 		}
 	} else {
-		console.log(currently_drawing)
 		if (currently_drawing) {
 			posX = e.clientX
 			posY = e.clientY
@@ -177,11 +193,29 @@ function mousemove(e) {
 function eraser(is_checked) {
 	if (is_checked) {
 		draw.strokeStyle = backgroundColor;
+		document.getElementsByClassName("eraser")[0].classList.add("selected")
 	} else {
 		draw.strokeStyle = colour;
+		document.getElementsByClassName("eraser")[0].classList.remove("selected")
 	}
 }
 
 function distance(x1,y1,x2,y2) {
 	return Math.pow(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2), 1/2)
+}
+
+function unselect(menu_class) {
+	if (document.getElementsByClassName(menu_class).length > 0) {
+		selection = document.getElementsByClassName(menu_class)[0].getElementsByClassName('selected')
+		for (var i = selection.length - 1; i >= 0; i--) {
+			selection[i].classList.remove('selected')
+		}
+	}
+}
+
+function create_pen() {
+	pen_icon = document.createElement('div')
+	pen_icon.innerText = pen_text
+	pen_icon.classList = "pen_icon"
+	return pen_icon
 }
